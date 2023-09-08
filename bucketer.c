@@ -15,17 +15,17 @@ struct CountsBySoH countBatteriesByHealth(const int* presentCapacities, int nBat
   
   for (int i = 0; i < nBatteries; i++) {
    
-    float sohp = ((float)presentCapacities[i] / rc) * 100;
+    float sohp = ((float)presentCapacities[i] / rc) * 100; //caluclating SOH Values
     if (sohp > 80) {
-      counts.healthy++;
+      counts.healthy++;  //Falls under healthy category
     } else if (sohp >= 65 && sohp <= 80) {
-      counts.exchange++;
+      counts.exchange++; //Falls under exchange category
     } else {
-      counts.failed++;
+      counts.failed++;   //Falls under failed category
     }
   }
   
-  return counts;
+  return counts; //returns structure counts which has count values of the categories
 }
 
 void testBucketingByHealth() {
@@ -33,10 +33,10 @@ void testBucketingByHealth() {
   const int numberOfBatteries = sizeof(presentCapacities) / sizeof(presentCapacities[0]);
   printf("Counting batteries by SoH...\n");
   struct CountsBySoH counts = countBatteriesByHealth(presentCapacities, numberOfBatteries);
-  assert(counts.healthy == 2);
-  assert(counts.exchange == 3);
-  assert(counts.failed == 1);
-  printf("Done counting :)\n");
+  assert(counts.healthy == 2);  //verifies that the above code returns 2 for healty category
+  assert(counts.exchange == 3); //verifies that the above code returns 3 for exchange category
+  assert(counts.failed == 1);  //verifies that the above code returns 1 for failed category
+  printf("Done counting :)\n"); // If all the above assertions are true then Done counting is printed successfully
 }
 
 int main() {
